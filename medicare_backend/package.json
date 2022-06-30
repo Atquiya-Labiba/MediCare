@@ -1,0 +1,28 @@
+{
+  "name": "medicare_backend",
+  "version": "1.0.0",
+  "description": "Backend of Medicare",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.server.js"
+  },
+  "keywords": [
+    "mern",
+    "hospital",
+    "management",
+    "backend",
+    "api"
+  ],
+  "author": "Atquiya Labiba Oni",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
