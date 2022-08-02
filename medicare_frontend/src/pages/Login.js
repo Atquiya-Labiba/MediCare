@@ -1,7 +1,7 @@
 import { Form, Input, Button } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom';
-import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.css';
 function Login() {
   const onFinish = (values) => {
     console.log("Received values of form: ", values)
