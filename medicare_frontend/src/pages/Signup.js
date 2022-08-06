@@ -1,46 +1,53 @@
-import { Form, Input, Button } from 'antd'
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Button, Form, Input } from "antd";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast';
+import { Link } from "react-router-dom";
+
 
 
 function Signup() {
-  const onFinish = async (values) => {
-    try {
-      const response = await axios.post("/api/user/signup", values);
-      if (response.data.success) {
-        toast.success(response.data.message);
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      toast.error("Something went wrong");
-    }
-  };
+    const onFinish = async (values) => {
+        try {
+            const response = await axios.post("/api/signup", values);
+            if (response.data.success) {
+                toast.success(response.data.message);
 
-  return (
-    <div className="authentication">
-      <div className="authentication-form card p-2">
-        <h1 className='card-title'> SIGN-UP</h1>
-        <Form
-          layout='vertical' onFinish={onFinish}>
-          <Form.Item label="Name" name="name">
-            <Input placeholder="Name" />
-          </Form.Item>
-          <Form.Item label="Email" name="email">
-            <Input placeholder="Email" />
-          </Form.Item>
-          <Form.Item label="Password" name="password">
-            <Input placeholder="Password" type='password' />
-          </Form.Item>
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        }
+    };
 
-          <Button className='round-shape-button my-2' htmlType='submit'>Create Account</Button>
-          <Link to='/login' className='anchor mt-2'> Already have an account? Login here</Link>
-        </Form>
-      </div>
-    </div>
-  );
+    return (
+        <div className="authentication">
+            <div className="authentication-form card p-3">
+                <h1 className="card-title">Signup</h1>
+                <Form layout="horizontal" onFinish={onFinish}>
+                    <Form.Item label="Name" name="name">
+                        <Input placeholder="Name" />
+                    </Form.Item>
+                    <Form.Item label="Email" name="email">
+                        <Input placeholder="Email" />
+                    </Form.Item>
+                    <Form.Item label="Password" name="password">
+                        <Input placeholder="Password" type="password" />
+                    </Form.Item>
+
+                    <Button
+                        className="primary-button my-2 full-width-button"
+                        htmlType="submit">
+                        Sign-Up
+                    </Button>
+                    <Link to="/login" className="anchor mt-2">
+                        Already have an account? Login Here
+                    </Link>
+                </Form>
+            </div>
+        </div>
+    );
 }
 
-export default Signup
+export default Signup;

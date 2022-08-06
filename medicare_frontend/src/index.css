@@ -1,81 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-
-*{
-  font-family: 'Montserrat', sans-serif !important;
-}
-/*antd override*/
-input{
-  border-radius: 0 !important;
-  border: 1px solid gray!important;
-  height: 40px !important;
-}
-input:focus{
-  outline: none !important;
-  box-shadow:none !important;
-  border: 1px solid gray !important;
+* {
+    font-family: 'Montserrat', sans-serif !important;
 }
 
-label{
-  font-size: 16px !important;
-  color: black !important;
+/*antd-override*/
+input {
+    border-radius: 2px !important;
+    border: 1px solid gray !important;
+    height: 40px !important;
+}
+
+input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid gray !important;
+}
+
+label {
+    font-size: 16px !important;
+    color: black;
 }
 
 .ant-form-item{
-  margin: 10px 0 !important;
-}
+    margin: 10px 0 !important;; 
+  }
 
-/* for all page style*/
+/* Styling for all the pages*/
 .card-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.627);
-
+    font-size: 2rem;
+    font-weight: bold;
 }
+
 .normal-text {
-  font-size: 1rem;
-}
-
-/* for primary design button*/
-.round-shape-button{
-  background-color: green;
-  border-color: cadetblue;
-  text-align: center;
-  height: 40px !important;
-  width: 100% !important;
-  font-weight: bold;
+    font-size: 1rem;
 }
 
 .card {
-  box-shadow: 0 0 2px rgb(166, 91, 91);
-  border-radius: 0 !important;
-}
-/* for anchor*/
-.anchor{
-  color: black !important;
-  text-decoration: underline ;
-  font-size: 15px !important;
+    box-shadow: 0 0 2px gray;
+    border-radius: 0 !important;
 }
 
-/* for auth page */
+.primary-button {
+    background-color: #005555 !important;
+    border-color: #005555 !important;
+    height: 40px !important;
+    width: 100% !important;
+    color: white !important;
+    font-size: 16px !important;
+    width: max-content !important;
+}
+
+.full-width-button {
+    width: 100% !important;
+}
+
+.anchor {
+    color: black !important;    
+    cursor: pointer;
+    font-size: 16px !important;
+}
+
+
+/* for auth pages*/
 .authentication {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
-.authentication-form{
-  width: 400px;  
+    height: 100 vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.authentication .card-title{
-  font-size:1.5rem;
-  font-weight: bold;
-  background-color: blue;
-  color:azure;
-  max-width:max-content !important;
-  padding:7px 15px;
-  margin-left: -30px;
-  border-bottom-left-radius: 10px;
+.authentication-form {
+    width: 400px;
 }
+
