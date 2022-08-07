@@ -1,20 +1,19 @@
 import React from 'react';
 import { Button, Form, Input } from "antd";
 import axios from "axios";
-import toast from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 function Signup() {
+    const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
-            const response = await axios.post("/api/signup", values);
-            if (response.data.success) {
-                toast.success(response.data.message);
-
-            } else {
-                toast.error(response.data.message);
+            const response = await axios.post("/api/user/signup", values);
+            if (response.status === 201) {
+                toast.success("Success")
+                navigate("/login")
             }
         } catch (error) {
             toast.error("Something went wrong");

@@ -7,7 +7,7 @@ app.use(express.json());
 const userRoute = require("./routes/userRoute");
 const port = process.env.PORT || 5000;
 
-app.use('/api', userRoute);
+app.use('/api/user', userRoute);
 
 app.listen(port, () => console.log(`Server started at ${port}`));
 

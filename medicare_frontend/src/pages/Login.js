@@ -10,14 +10,13 @@ function Login() {
     const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
-            const response = await axios.post("/api/login", values);
-            if (response.data.success) {
-                toast.success(response.data.message);
+            const response = await axios.post("/api/user/login", values);
+            if (response.status === 200) {
+                toast.success("Login success");
                 toast("Redirecting to Home Page");
-                navigate("/signup")
-
+                navigate("/")
             } else {
-                toast.error(response.data.message);
+                toast.error("Login error");
             }
         } catch (error) {
             toast.error("Something went wrong");
@@ -38,7 +37,6 @@ function Login() {
                     <Form.Item label="Password" name="password">
                         <Input placeholder="Password" type="password" />
                     </Form.Item>
-
                     <Button
                         className="primary-button my-2 full-width-button"
                         htmlType="submit">
