@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 
 app.use('/api/user', userRoute);
-app.use('api/admin', adminRoute);
+app.use('/api/admin', adminRoute);
 
 app.listen(port, () => console.log(`Server started at ${port}`));
 

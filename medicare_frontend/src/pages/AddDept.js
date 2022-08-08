@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
 
 
 

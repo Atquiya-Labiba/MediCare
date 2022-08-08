@@ -8,9 +8,14 @@ const cabinSchema = new mongoose.Schema({
     },
 
     status: {
-        type: Boolean,
+        type: String,
         required: true
-    },  
+    }, 
+
+    price: {
+        type: String,
+        required: true
+    }
     
     
 

@@ -1,6 +1,52 @@
-const Admin = require("../models/cabinModel");
-const Admin = require("../models/doctorModel");
-const Admin = require("../models/deptModel");
+const Cabin = require("../models/cabinModel");
+const Doctor= require("../models/doctorModel");
+const Dept = require("../models/deptModel");
 
 
-exports.adddoctor()
+exports.adddoctor = (req, res,next) => {
+    const { name, degree, department } = req.body
+    const doctor = new Doctor({
+        name, degree, department
+    })
+    doctor.save((error, doctor) => {
+        if (error) {
+            return res.status(400).json({ error })
+        }
+        if (doctor) {
+            return res.status(201).json({ doctor })
+        }
+    });
+};
+
+
+exports.adddept = (req, res,next) => {
+    const { name, description } = req.body
+    const doctor = new Dept({
+        name, description
+    })
+    doctor.save((error, dept) => {
+        if (error) {
+            return res.status(400).json({ error })
+        }
+        if (dept) {
+            return res.status(201).json({ depr })
+        }
+    });
+};
+
+
+exports.addcabin = (req, res,next) => {
+    const { type,price,status } = req.body
+    const doctor = new Cabin({
+        type, price,status
+    })
+    doctor.save((error, cabin) => {
+        if (error) {
+            return res.status(400).json({ error })
+        }
+        if (cabin) {
+            return res.status(201).json({ cabin })
+        }
+    });
+};
+
