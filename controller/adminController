@@ -1,0 +1,6 @@
+const Admin = require("../models/cabinModel");
+const Admin = require("../models/doctorModel");
+const Admin = require("../models/deptModel");
+
+
+exports.adddoctor()

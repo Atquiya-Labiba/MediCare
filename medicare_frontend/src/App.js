@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Homepage from './pages/Homepage';
+import AddDoctor from './pages/AddDoctor';
+import AddCabin from './pages/AddCabin';
+import AddDept from './pages/AddDept';
+import BookAppointment from './pages/BookAppointment';
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -14,6 +18,10 @@ function App() {
       <Route path= '/login' element={<Login />}/>
       <Route path= '/signup' element={<Signup />}/>
       <Route path= '/' element={<Homepage />}/>
+      <Route path= '/bookappointment' element={<BookAppointment />}/>
+      <Route path= '/adddoctor' element={<AddDoctor />}/>
+      <Route path= '/adddept' element={<AddDept />}/>
+      <Route path= '/addcabin' element={<AddCabin />}/>
     </Routes>    
     </BrowserRouter>
     

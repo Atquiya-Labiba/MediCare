@@ -41,12 +41,12 @@ exports.login=(async(req,res,next)=>{
   const{email,password}=req.body
   if(!email || !password){
       return res.status(400).json({
-          message:'please enter email and password'
+          message:'enter email and password'
       })
   }
   const user= await User.findOne({email}).select('+password')
   const token =user.getJwtToken()
-  /*const {role}=user */
+  const {role}=user
   if(!user){
       return res.status(401).json({
           message:'Wrong email or password'
@@ -55,13 +55,14 @@ exports.login=(async(req,res,next)=>{
   const passCheck=await user.comparePassword(password)
   if(!passCheck){
       return res.status(402).json({message:'Invalid password'})        
-  }else if(passCheck){
+  }else if(passCheck && user.role=='user'){
       
-      return res.status(200).json({token,message:"Logged in succesfully",success:true})
+      return res.status(200).json({user:{role},token,message:"Logged in succesfully",success:true})
     
   }
   
 })
+
 
 
 
