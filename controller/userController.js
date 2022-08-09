@@ -63,6 +63,13 @@ exports.login=(async(req,res,next)=>{
   
 })
 
+exports.getdoctor=(async(req, res) => {
+  const id = req.params.id;
+  const query = {_id: ObjectId(id)};
+  const department = await departmentCollection.findOne(query);
+  res.json(department);
+});
+
 
 
 

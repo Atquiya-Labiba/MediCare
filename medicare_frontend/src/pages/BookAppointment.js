@@ -1,19 +1,22 @@
-import React from 'react';
-import { Button, Form, Input } from "antd";
+import React, { useState, useEffect } from 'react';
+import { Button, DatePicker, Form, Input, Select, TimePicker, Row, Col } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import Layout from '../components/Layout';
+import "../layout.css";
+import { useParams, useNavigate, Link } from "react-router-dom";
+const { Option } = Select;
 
 
 
 function BookAppointment() {
-    const navigate = useNavigate();
+
     const onFinish = async (values) => {
         try {
-            const response = await axios.post("/api/user/bookappointment", values);
+            const response = await axios.get("/api/user/bookappointment", values);
             if (response.status === 201) {
                 toast.success("Success")
-                navigate("/login")
             }
         } catch (error) {
             toast.error("Something went wrong");
@@ -21,32 +24,33 @@ function BookAppointment() {
     };
 
     return (
-        <div className="authentication">
-            <div className="authentication-form card p-3">
-                <h1 className="card-title">Signup</h1>
-                <Form layout="horizontal" onFinish={onFinish}>
-                    <Form.Item label="Name" name="name">
-                        <Input placeholder="Name" />
-                    </Form.Item>
-                    <Form.Item label="Email" name="email">
-                        <Input placeholder="Email" />
-                    </Form.Item>
-                    <Form.Item label="Password" name="password">
-                        <Input placeholder="Password" type="password" />
-                    </Form.Item>
+        <Layout>
+            <div>
+                <h1>Make an Appointment</h1>
+                <hr />
+                <Row>
+                    <Col span={8} sm={24} xs={24} lg={8}>
+                        <h1 className='normal-text'>
+                        </h1>
 
-                    <Button
-                        className="primary-button my-2 full-width-button"
-                        htmlType="submit">
-                        Sign-Up
-                    </Button>
-                    <Link to="/login" className="anchor mt-2">
-                        Already have an account? Login Here
-                    </Link>
-                </Form>
+                        <div className="d-flex flex-column pt-2 mt-2">
+                            <DatePicker format="DD-MM-YYY" />
+                            <TimePicker.RangePicker format="HH: mm" className='mt-3' />
+                            <Button
+                                className="primary-button my-2 full-width-button"
+                                htmlType="submit">
+                                Check Availability
+                            </Button>
+                            <Button
+                                className="primary-button my-2 full-width-button"
+                                htmlType="submit">
+                                Book Now
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
             </div>
-        </div>
+        </Layout>
     );
 }
-
 export default BookAppointment;
