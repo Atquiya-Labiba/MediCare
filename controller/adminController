@@ -20,16 +20,16 @@ exports.adddoctor = (req, res,next) => {
 
 
 exports.adddept = (req, res,next) => {
-    const { name, description } = req.body
-    const doctor = new Dept({
-        name, description
+    const { name, description,facility } = req.body
+    const dept = new Dept({
+        name, description, facility
     })
-    doctor.save((error, dept) => {
+    dept.save((error, dept) => {
         if (error) {
             return res.status(400).json({ error })
         }
         if (dept) {
-            return res.status(201).json({ depr })
+            return res.status(201).json({ dept })
         }
     });
 };
@@ -37,10 +37,10 @@ exports.adddept = (req, res,next) => {
 
 exports.addcabin = (req, res,next) => {
     const { type,price,status } = req.body
-    const doctor = new Cabin({
+    const cabin = new Cabin({
         type, price,status
     })
-    doctor.save((error, cabin) => {
+    cabin.save((error, cabin) => {
         if (error) {
             return res.status(400).json({ error })
         }
@@ -49,4 +49,7 @@ exports.addcabin = (req, res,next) => {
         }
     });
 };
+
+
+
 

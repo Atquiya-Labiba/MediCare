@@ -5,12 +5,13 @@ import toast from "react-hot-toast";
 
 
 
-function AddDept() {    
+
+function AddDept() {
     const onFinish = async (values) => {
         try {
             const response = await axios.post("/api/admin/adddept", values);
             if (response.status === 201) {
-                toast.success("Success")                
+                toast.success("Success")
             }
         } catch (error) {
             toast.error("Something went wrong");
@@ -25,17 +26,18 @@ function AddDept() {
                     <Form.Item label="Name" name="name">
                         <Input placeholder="Name" />
                     </Form.Item>
-                    <Form.Item label="Department" name="department">
-                        <Input placeholder="Department" />
+                    <Form.Item label="Description" name="description">
+                        <Input placeholder="Description" />
                     </Form.Item>
-                    <Form.Item label="Degree" name="degree">
-                        <Input placeholder="Degree"  />
+                    <Form.Item label="Facility" name="facility">
+                        <Input placeholder="Facility" />
                     </Form.Item>
+
                     <Button
                         className="primary-button my-2 full-width-button"
                         htmlType="submit">
                         Add Department Information
-                    </Button>                    
+                    </Button>
                 </Form>
             </div>
         </div>

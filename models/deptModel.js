@@ -9,7 +9,14 @@ const deptSchema = new mongoose.Schema({
 
     description:{
         type: String,
+        required: true
+    },
+
+    facility:{
+        type: String,
+        required:true
     }
+
 
 });
 
