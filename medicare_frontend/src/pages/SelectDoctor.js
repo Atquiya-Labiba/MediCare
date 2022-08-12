@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import Layout from '../components/Layout';
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import {Link} from "react-router-dom";
-import {toast} from 'react-hot-toast'
 import axios from "axios";
 import { Table } from "antd";
-import moment from "moment";
+
 
 function SelectDoctor() {
   const [doctors, setDoctors] = useState([]);

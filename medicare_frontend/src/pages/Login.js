@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from 'react-hot-toast';
@@ -20,6 +20,7 @@ function Login() {
                 dispatch(setUser(response.data.data));
                 toast.success("Login success");
                 toast("Redirecting to Home Page");
+                localStorage.setItem("user", JSON.stringify(response.data.user));
                 navigate("/Home")
             } else {
                 toast.error("Login error");

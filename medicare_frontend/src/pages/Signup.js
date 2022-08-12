@@ -17,8 +17,8 @@ function Signup() {
             const response = await axios.post("/api/user/signup", values);
             dispatch(hideLoading());
             if (response.status === 201) {
-                toast.success("Success")
-                navigate("/login")
+                toast.success("Success")                
+                navigate("/")
             }
         } catch (error) {
             dispatch(hideLoading());

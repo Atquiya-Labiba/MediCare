@@ -9,7 +9,7 @@ const bookingSchema = new mongoose.Schema({
     docname:{
         type: String,
         required: true,
-    },  
+    },      
     date:{
         type: String,
         required: true

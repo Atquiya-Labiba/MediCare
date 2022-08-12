@@ -15,7 +15,7 @@ const AdminDashboard = () => (
             <div className="logo" />
             <Menu
                 theme='dark'
-                mode="horizontal"                
+                mode="horizontal"
                 items={new Array(1).fill(null).map((_, index) => ({
                     key: String(index + 1),
                     label: `Logout`,
@@ -42,6 +42,9 @@ const AdminDashboard = () => (
                 </Link>
                 <Link to="/adddept" className="anchor mt-2">
                     <span /> Add Department   &nbsp; <span />
+                </Link>
+                <Link to="/appointmentinfo" className="anchor mt-2">
+                    <span /> All Appointments   &nbsp; <span />
                 </Link>
             </Breadcrumb>
             <div

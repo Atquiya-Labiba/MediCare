@@ -7,6 +7,7 @@ const _jwt = require('jsonwebtoken')
 
 
 
+
 exports.signup = async (req, res) => {
   User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
@@ -64,7 +65,7 @@ exports.login = (async (req, res, next) => {
 
     res.status(200).send({
       success: true,
-      data: user,
+      data: user,      
     });
 
   }
@@ -139,6 +140,25 @@ exports.getdoctors = async (req, res) => {
     console.log(error);
     res.status(500).send({
       message: "Error to get doctor's info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
+exports.getappointments = async (req, res) => {  
+  try {    
+    const appointments = await booking.find({userId:req.params.id});         
+    res.status(200).send({
+      message: "Appointment info fetched successfully",
+      success: true,
+      data: appointments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error to get appointment's info",
       success: false,
       error,
     });

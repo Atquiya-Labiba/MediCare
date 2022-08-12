@@ -63,28 +63,5 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 userSchema.methods.getJwtToken = function () {
     return _jwt.sign({ _id: this._id }, process.env.JWT_TOKEN,
         { expiresIn: '1h' })
-}
-
-
-module.exports = async (req, res, next) => {
-    try {
-      const token = req.headers["authorization"].split(" ")[1];
-      jwt.verify(token, getJwtToken, (err, decoded) => {
-        if (err) {
-          return res.status(401).send({
-            message: "Auth failed",
-            success: false,
-          });
-        } else {
-          req.body.userId = decoded.id;
-          next();
-        }
-      });
-    } catch (error) {
-      return res.status(401).send({
-        message: "Auth failed",
-        success: false,
-      });
-    }
-  };
+};
 module.exports = mongoose.model('User', userSchema)

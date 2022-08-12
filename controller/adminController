@@ -1,6 +1,7 @@
 const Cabin = require("../models/cabinModel");
 const Doctor= require("../models/doctorModel");
 const Dept = require("../models/deptModel");
+const booking = require("../models/bookingModel");
 
 
 exports.adddoctor = (req, res,next) => {
@@ -49,6 +50,24 @@ exports.addcabin = (req, res,next) => {
         }
     });
 };
+
+exports.getallappointments = async (req, res) => {
+    try {      
+      const appointments = await booking.find({});
+      res.status(200).send({
+        message: "Appointment info fetched successfully",
+        success: true,
+        data: appointments,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        message: "Error to get appointment's info",
+        success: false,
+        error,
+      });
+    }
+  };
 
 
 

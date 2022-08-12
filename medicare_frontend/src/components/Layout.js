@@ -1,9 +1,12 @@
 import React from "react";
 import "../layout.css";
 import { Link} from "react-router-dom";
+import { useSelector} from "react-redux";
 
 
 function Layout({ children }) {
+    const { user } = useSelector((state) => state.user);
+    const id=user._id 
 
     const userMenu = [
         {
@@ -18,7 +21,7 @@ function Layout({ children }) {
         },
         {
             name: "Appointments",
-            path: "/appointments",
+            path: `/getappointments/${id}`,
             icon: "ri-file-list-3-line",
         }
     ];

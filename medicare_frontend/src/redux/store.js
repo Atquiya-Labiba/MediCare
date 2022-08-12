@@ -8,7 +8,18 @@ const rootReducer = combineReducers({
   user : userSlice.reducer,
 });
 
+
+// const userInfoFromStorage = localStorage.getItem('user')
+//   ? JSON.parse(localStorage.getItem('user'))
+//   : null
+
+// const initialState = {  
+//   user: { user: userInfoFromStorage },
+// }
+
 const store = configureStore({
   reducer: rootReducer,
+  // initialState,
 });
+
 export default store;
