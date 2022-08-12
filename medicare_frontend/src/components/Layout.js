@@ -12,14 +12,14 @@ function Layout({ children }) {
             icon: "ri-home-line",
         },
         {
-            name: "Appointments",
+            name: "Book Appointment",
             path: "/getdoctors",
-            icon: "ri-file-list-line",
+            icon: "ri-hospital-line",
         },
         {
-            name: "Apply Doctor",
-            path: "/apply-doctor",
-            icon: "ri-hospital-line",
+            name: "Appointments",
+            path: "/appointments",
+            icon: "ri-file-list-3-line",
         }
     ];
 

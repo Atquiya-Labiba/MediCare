@@ -15,10 +15,11 @@ const { Option } = Select;
 
 function BookAppointment() {
     const dispatch = useDispatch();
+    const [isAvailable, setIsAvailable] = useState(false);
     const [time, setTime] = useState();
     const [date, setDate] = useState();
     const { user } = useSelector((state) => state.user);
-    const [searchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()    
     const doctorname = (searchParams.get('name'))
 
 
@@ -34,6 +35,7 @@ function BookAppointment() {
             );
             if (response.data.success) {
                 toast.success(response.data.data);
+                setIsAvailable(true);
             }
             else {
                 toast.error(response.data.message);
@@ -47,6 +49,7 @@ function BookAppointment() {
 
 
     const bookNow = async () => {
+        setIsAvailable(false);
         try {
             dispatch(showLoading());
             const response = await axios.post("/api/user/bookappointment",
@@ -80,26 +83,28 @@ function BookAppointment() {
 
                         <div className="d-flex flex-column pt-2 mt-2">
                             <DatePicker format="DD-MM-YYYY"
-                                onChange={(value) =>
-                                    setDate(moment(value).format('DD-MM-YYYY'))} />
+                                onChange={(value) => {
+                                    setDate(moment(value).format('DD-MM-YYYY'));
+                                    setIsAvailable(false);
+                                }} />
                             <TimePicker
                                 format="HH:mm"
                                 className="mt-3"
                                 onChange={(value) => {
-                                    // setIsAvailable(false);
+                                    setIsAvailable(false);
                                     setTime(moment(value).format("HH:mm"));
                                 }}
                             />
                             <Button
                                 className="primary-button my-2 full-width-button" onClick={Availabilitycheck}
-                                htmlType="submit">
+                            >
                                 Check Availability
                             </Button>
-                            <Button
+                            {isAvailable && (<Button
                                 className="primary-button my-2 full-width-button" onClick={bookNow}
-                                htmlType="submit">
+                            >
                                 Book Now
-                            </Button>
+                            </Button>)}
                         </div>
                     </Col>
                 </Row>
