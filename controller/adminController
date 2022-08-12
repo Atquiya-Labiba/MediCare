@@ -37,9 +37,9 @@ exports.adddept = (req, res,next) => {
 
 
 exports.addcabin = (req, res,next) => {
-    const { type,price,status } = req.body
+    const { type,price,status,phn_num } = req.body
     const cabin = new Cabin({
-        type, price,status
+        type, price,status,phn_num
     })
     cabin.save((error, cabin) => {
         if (error) {

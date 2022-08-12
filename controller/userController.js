@@ -2,6 +2,8 @@ const moment = require("moment");
 const User = require("../models/userModel");
 const Doctor = require("../models/doctorModel");
 const booking = require("../models/bookingModel");
+const dept = require("../models/deptModel");
+const cabin = require("../models/cabinModel");
 const bcrypt = require("bcryptjs");
 const _jwt = require('jsonwebtoken')
 
@@ -164,6 +166,67 @@ exports.getappointments = async (req, res) => {
     });
   }
 };
+
+
+
+exports.profile = async (req, res) => {  
+  try {    
+    const profile= await User.find({userId:req.params.userId});  
+    console.log(`${userId}`)       
+    res.status(200).send({
+      message: "Appointment info fetched successfully",
+      success: true,
+      data: profile,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error to get appointment's info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
+exports.department = async (req, res) => {
+  try {
+    const departments = await dept.find({});    
+    res.status(200).send({
+      message: "Department info fetched successfully",
+      success: true,
+      data: departments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error to get department info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
+exports.cabin = async (req, res) => {
+  try {
+    const cabins = await cabin.find({});    
+    res.status(200).send({
+      message: "Cabin info fetched successfully",
+      success: true,
+      data: cabins,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error to get cabin info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
 
 
 

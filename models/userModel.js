@@ -37,8 +37,7 @@ const userSchema = new mongoose.Schema({
     },
 
     prescription: {
-        type: Array,
-        default: [],
+        type: String
     },
 
     role:{
@@ -48,8 +47,7 @@ const userSchema = new mongoose.Schema({
     },
 
     profilepic: {
-        type:
-            String,
+        type:String,
     },
 
 }, { timestamps: true });

@@ -7,6 +7,7 @@ import axios from "axios";
 import { Table } from "antd";
 
 
+
 function SelectDoctor() {
   const [doctors, setDoctors] = useState([]);
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function SelectDoctor() {
     {
       title: "Name",      
       dataIndex: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name),    
       render: (text, record) => (
         <Link to={'/bookappointment?name=' +record.name}>{text}</Link>
         // <span>
@@ -52,7 +54,7 @@ function SelectDoctor() {
         dataIndex: "department",
         render: (text, record) => (
           <span>
-            {record.degree} 
+            {record.department} 
           </span>
         ),
       },
@@ -61,6 +63,7 @@ function SelectDoctor() {
     <Layout>
       <h1 className="page-header">Select a doctor </h1>
       <hr />
+  
       <Table columns={columns} dataSource={doctors} />
     </Layout>
   );

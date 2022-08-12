@@ -1,77 +1,69 @@
-import { Breadcrumb, Layout, Menu, Image } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Layout from '../components/Layout';
+import { showLoading, hideLoading } from "../redux/alertsSlice";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
-const { Header, Content } = Layout;
+import { Table } from "antd";
 
-const Department = () => {
-    const onFinish = async (values) => {
+function Department() {
+    const [departments, setDept] = useState([]);
+    const dispatch = useDispatch();
+    const getDept = async () => {
         try {
-            const response = await axios.get("/api/admin/department", values);
-            if (response.status === 201) {
-                toast.success("Success")
+            dispatch(showLoading());
+            const resposne = await axios.get("/api/user/department");
+            dispatch(hideLoading());
+            if (resposne.data.success) {
+                setDept(resposne.data.data);
             }
         } catch (error) {
-            toast.error("Something went wrong");
+            dispatch(hideLoading());
         }
     };
 
+    useEffect(() => {
+        getDept();
+    }, []);
+    const columns = [
+        {
+            title: "Name",
+            dataIndex: "name",
+            render: (text, record) => (
+                <Link to={'/getdoctors?name=' +record.name}>{text}</Link>
+                // <span>
+                //     {record.name}
+                // </span>
+            ),
+        },
+
+        {
+            title: "Description",
+            dataIndex: "description",
+            render: (text, record) => (
+                <span>
+                    {record.description}
+                </span>
+            ),
+        },
+        {
+            title: "Facility",
+            dataIndex: "facility",
+            render: (text, record) => (
+                <span>
+                    {record.facility}
+                </span>
+            ),
+        },
+    ];
+
     return (
         <Layout>
-            <Header
-                style={{
-                    position: 'fixed',
-                    zIndex: 1,
-                    width: '100%',
-                }}
-            >
-                <div className="logo" />
-                <Menu
-                    theme='dark'
-                    mode="horizontal"
-                    items={new Array(1).fill(null).map((_, index) => ({
-                        key: String(index + 1),
-                        label: `Logout`,
-                    }))}
-
-                />
-            </Header>
-            <Content
-                className="site-layout"
-                style={{
-                    padding: '0 0px',
-                    marginTop: 64,
-                }}
-            >
-                <Breadcrumb
-                    style={{
-                        margin: '16px 0',
-                    }}
-                >
-                    <Link to="/" className="anchor mt-2">
-                        <span /> &nbsp; Home &nbsp; &nbsp; <span />
-                    </Link>
-                    <Link to="/bookappointment" className="anchor mt-2">
-                        <span /> Book Appointment &nbsp; &nbsp; <span />
-                    </Link>
-                    <Link to="/addcabin" className="anchor mt-2">
-                        <span /> Cabin &nbsp; &nbsp; <span />
-                    </Link>
-                    <Link to="/adddept" className="anchor mt-2">
-                        <span /> Profile &nbsp; &nbsp; <span />
-                    </Link>
-                </Breadcrumb>
-                <div
-                    className="site-layout-background"
-                    style={{
-                        padding: 24,
-                        minHeight: 380,
-                    }}
-                >
-                </div>
-            </Content>
+            <h1 className="page-header">Department </h1>
+            <hr />
+            <Table columns={columns} dataSource={departments} />
         </Layout>
+
     );
 }
 

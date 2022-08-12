@@ -14,6 +14,8 @@ import BookAppointment from './pages/BookAppointment';
 import { Toaster } from "react-hot-toast";
 import Department from './pages/Department';
 import SelectDoctor from './pages/SelectDoctor';
+import Profile from './pages/PatientProfile';
+import Cabin from './pages/Cabin';
 
 function App() {
   return (
@@ -27,15 +29,17 @@ function App() {
         <Route path='/bookappointment' element={<BookAppointment />} />
         <Route path='/getdoctors' element={<SelectDoctor />} />
         <Route path='/getappointments/:id' element={<Appointment />} />
+        <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/cabin' element={<Cabin/>} />
+        <Route path='/department' element={<Department />} />
         {/* Admin panel */}
         <Route path='/adddoctor' element={<AddDoctor />} />
         <Route path='/adddept' element={<AddDept />} />
-        <Route path='/addcabin' element={<AddCabin />} />
-        <Route path='/department' element={<Department />} />
+        <Route path='/addcabin' element={<AddCabin />} />        
         <Route path='/appointmentinfo' element={<CancelAppointment />} />
 
-        {/* <Route path='/cabin' element={<Cabin />} />
-        <Route path='/profile' element={<Profile />} /> */}
+        
+       
       </Routes>
     </BrowserRouter>
 

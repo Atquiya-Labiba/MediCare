@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Input, Select } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
-const {Option} =Select;
+const { Option } = Select;
 
 
 
@@ -35,6 +35,9 @@ function AddCabin() {
                             <Option value="Available">Available</Option>
                             <Option value="Not Available">Not available</Option>
                         </Select>
+                    </Form.Item>
+                    <Form.Item label="phn_num" name="phn_num">
+                        <Input placeholder="Contact Number" />
                     </Form.Item>
                     <Button
                         className="primary-button my-2 full-width-button"
