@@ -3,22 +3,29 @@ import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
+import { setUser } from "../redux/userSlice";
 
 
 function Login() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
-            const response = await axios.post("/api/user/login", values);
+            dispatch(showLoading());
+            const response = await axios.post("/api/user/", values);
+            dispatch(hideLoading());
             if (response.status === 200) {
+                dispatch(setUser(response.data.data));
                 toast.success("Login success");
                 toast("Redirecting to Home Page");
-                navigate("/")
+                navigate("/Home")
             } else {
                 toast.error("Login error");
             }
         } catch (error) {
+            dispatch(hideLoading());
             toast.error("Something went wrong");
         }
     };
@@ -50,7 +57,5 @@ function Login() {
         </div>
     );
 }
-
-
 
 export default Login

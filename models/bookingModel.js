@@ -1,24 +1,25 @@
 const mongoose = require('mongoose')
 const bookingSchema = new mongoose.Schema({
-
-    startTime: {
-        type: Number,
-        required: true
-    },
-
-    endTime: {
-        type: Number,
-        required: true
-    },
-
-    department:{
+   
+    
+    userId:{
         type: String,
-        required: true
     },
-    doctor:{
+    
+    docname:{
         type: String,
         required: true,
+    },  
+    date:{
+        type: String,
+        required: true
+    },
+    time:{
+        type: String,
+        required: true
+        
     }
+    
 
 }, { timestamps: true });
 

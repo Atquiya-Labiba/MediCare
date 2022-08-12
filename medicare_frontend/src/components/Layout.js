@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "../layout.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Badge } from "antd";
+import { Link} from "react-router-dom";
+
 
 function Layout({ children }) {
 
     const userMenu = [
         {
             name: "Home",
-            path: "/",
+            path: "/Home",
             icon: "ri-home-line",
         },
         {
             name: "Appointments",
-            path: "/bookappointment",
+            path: "/getdoctors",
             icon: "ri-file-list-line",
         },
         {
@@ -44,7 +43,7 @@ function Layout({ children }) {
                 </div>
                 <div className="content">
                     <div className="header">
-                        header
+                        MediCare
                     </div>
                     <div className="body">{children}</div>
                 </div>

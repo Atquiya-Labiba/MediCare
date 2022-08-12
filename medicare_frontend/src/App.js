@@ -11,6 +11,7 @@ import AddDept from './pages/AddDept';
 import BookAppointment from './pages/BookAppointment';
 import { Toaster } from "react-hot-toast";
 import Department from './pages/Department';
+import SelectDoctor from './pages/SelectDoctor';
 
 function App() {
   return (
@@ -18,14 +19,15 @@ function App() {
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path='/admindashboard' element={<AdminDashboard />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/' element={<Homepage />} />
+        <Route path='/Home' element={<Homepage />} />
         <Route path='/bookappointment' element={<BookAppointment />} />
         <Route path='/adddoctor' element={<AddDoctor />} />
         <Route path='/adddept' element={<AddDept />} />
         <Route path='/addcabin' element={<AddCabin />} />
         <Route path='/department' element={<Department />} />
+        <Route path='/getdoctors' element={<SelectDoctor />} />
         {/* <Route path='/cabin' element={<Cabin />} />
         <Route path='/profile' element={<Profile />} /> */}
       </Routes>
