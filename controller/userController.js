@@ -17,12 +17,15 @@ exports.signup = async (req, res) => {
         error: "User already registered",
       });
 
-    const { name, email, password } = req.body;
+    const { name, email, password, age, gender, contact_no } = req.body;
     const hash_password = await bcrypt.hash(password, 10);
     const _user = new User({
       name,
       email,
       hash_password,
+      age,
+      gender,
+      contact_no
     });
 
     _user.save((error, user) => {
@@ -67,7 +70,7 @@ exports.login = (async (req, res, next) => {
 
     res.status(200).send({
       success: true,
-      data: user,      
+      data: user,
     });
 
   }
@@ -149,9 +152,9 @@ exports.getdoctors = async (req, res) => {
 };
 
 
-exports.getappointments = async (req, res) => {  
-  try {    
-    const appointments = await booking.find({userId:req.params.id});         
+exports.getappointments = async (req, res) => {
+  try {
+    const appointments = await booking.find({ userId: req.params.id });
     res.status(200).send({
       message: "Appointment info fetched successfully",
       success: true,
@@ -169,19 +172,20 @@ exports.getappointments = async (req, res) => {
 
 
 
-exports.profile = async (req, res) => {  
-  try {    
-    const profile= await User.find({userId:req.params.userId});  
-    console.log(`${userId}`)       
+exports.profile = async (req, res) => {
+  try {
+
+    const profile = await User.find({ userId: req.params.id });
+    // console.log(`${userId}`)       
     res.status(200).send({
-      message: "Appointment info fetched successfully",
+      message: "Profile info fetched successfully",
       success: true,
       data: profile,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      message: "Error to get appointment's info",
+      message: "Error to get profile's info",
       success: false,
       error,
     });
@@ -191,7 +195,7 @@ exports.profile = async (req, res) => {
 
 exports.department = async (req, res) => {
   try {
-    const departments = await dept.find({});    
+    const departments = await dept.find({});
     res.status(200).send({
       message: "Department info fetched successfully",
       success: true,
@@ -210,7 +214,7 @@ exports.department = async (req, res) => {
 
 exports.cabin = async (req, res) => {
   try {
-    const cabins = await cabin.find({});    
+    const cabins = await cabin.find({});
     res.status(200).send({
       message: "Cabin info fetched successfully",
       success: true,
@@ -225,6 +229,52 @@ exports.cabin = async (req, res) => {
     });
   }
 };
+
+
+exports.updateprofile = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id)
+    if (user) {
+      console.log(`${req.body.age}`)
+      if (req.body.email) {
+        user.email = req.body.email
+      }
+      if (req.body.name) {
+        user.name = req.body.name
+      }
+      if (req.body.age) {
+        user.age = req.body.age
+        console.log(`${user.age}`)
+      }
+      if (req.body.gender) {
+        user.gender = req.body.gender
+      }
+      if (req.body.contact_no) {
+        user.contact_no = req.body.contact_no
+      }
+    }
+    const updateduser = await user.save();
+    console.log(`${user}`)
+    res.status(200).send({
+      message: "User info fetched successfully",
+      success: true,
+      data: updateduser,
+    });
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error to get user info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
+
+
+
 
 
 

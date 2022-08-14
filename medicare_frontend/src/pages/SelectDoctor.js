@@ -9,6 +9,9 @@ import { Table } from "antd";
 
 
 function SelectDoctor() {
+  const onChange = (filters) => {
+    console.log('params',filters);
+  };
   const [doctors, setDoctors] = useState([]);
   const dispatch = useDispatch();
   const getDoctorsData = async () => {
@@ -52,11 +55,41 @@ function SelectDoctor() {
       {
         title: "Department",
         dataIndex: "department",
-        render: (text, record) => (
-          <span>
-            {record.department} 
-          </span>
-        ),
+        filters: [
+          {
+            text: 'Cardiology',
+            value: 'Cardiology',
+          },
+          {
+            text: 'Dermatology',
+            value: 'Dermatology',
+          },
+          {
+            text: 'Neonatology',
+            value: 'Neonatology',
+          },
+          {
+            text: 'Nutrition',
+            value: 'Nutrition',
+          },
+          {
+            text: 'ENT & Head Neck Surgery',
+            value: 'ENT & Head Neck Surgery',
+          },
+          {
+            text: 'Neurology',
+            value: 'Neurology',
+          },
+          {
+            text: 'Orthopedics',
+            value: 'Orthopedics',
+          },
+          {
+            text: 'Pediatrics',
+            value: 'Pediatrics',
+          },
+        ],
+        onFilter: (value, record) => record.department.indexOf(value) === 0,
       },
   ];
   return (
@@ -64,7 +97,7 @@ function SelectDoctor() {
       <h1 className="page-header">Select a doctor </h1>
       <hr />
   
-      <Table columns={columns} dataSource={doctors} />
+      <Table columns={columns} dataSource={doctors} onChange={onChange} />
     </Layout>
   );
 }

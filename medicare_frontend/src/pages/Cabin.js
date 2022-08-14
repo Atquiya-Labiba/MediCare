@@ -7,6 +7,9 @@ import axios from "axios";
 import { Table } from "antd";
 
 function Cabin() {
+    const onChange = (filters) => {
+        console.log('params',filters);
+      };
     const [cabins, setCabin] = useState([]);
     const dispatch = useDispatch();
     const getCabin = async () => {
@@ -39,12 +42,18 @@ function Cabin() {
 
         {
             title: "Status",
-            dataIndex: "status",
-            render: (text, record) => (
-                <span>
-                    {record.status}
-                </span>
-            ),
+            dataIndex: "status",           
+            filters: [
+                {
+                  text: 'Available',
+                  value: 'Available',
+                },
+                {
+                  text: 'Not Available',
+                  value: 'Not Available',
+                },
+              ],
+              onFilter: (value, record) => record.status.indexOf(value) === 0,
         },
         {
             title: "Price",
@@ -72,7 +81,7 @@ function Cabin() {
         <Layout>
             <h1 className="page-header">Cabin </h1>
             <hr />
-            <Table columns={columns} dataSource={cabins} />
+            <Table columns={columns} dataSource={cabins} onChange={onChange}/>
         </Layout>
 
     );

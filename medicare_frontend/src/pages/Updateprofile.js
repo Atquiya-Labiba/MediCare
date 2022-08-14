@@ -1,25 +1,26 @@
 import React from 'react';
-import { Button, Form, Input,Select } from "antd";
+import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
-const { Option } = Select;
 
 
 
-function Signup() {
+function UpdateProfile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { user } = useSelector((state) => state.user);
+    const id = user._id
     const onFinish = async (values) => {
         try {
             dispatch(showLoading());
-            const response = await axios.post("/api/user/signup", values);
+            console.log(id)
+            const response = await axios.put(`/api/user/updateprofile/${id}`,values);
             dispatch(hideLoading());
             if (response.status === 201) {
-                toast.success("Success")
-                navigate("/")
+                toast.success("Success")                
             }
         } catch (error) {
             dispatch(hideLoading());
@@ -30,7 +31,7 @@ function Signup() {
     return (
         <div className="authentication">
             <div className="authentication-form card p-3">
-                <h1 className="card-title">Signup</h1>
+                <h1 className="card-title">Edit Information</h1>
                 <Form layout="horizontal" onFinish={onFinish}>
                     <Form.Item label="Name" name="name">
                         <Input placeholder="Name" />
@@ -38,30 +39,26 @@ function Signup() {
                     <Form.Item label="Email" name="email">
                         <Input placeholder="Email" />
                     </Form.Item>
-                    <Form.Item label="Password" name="password">
-                        <Input placeholder="Password" type="password" />
-                    </Form.Item>
                     <Form.Item label="Age" name="age">
-                        <Input placeholder="Age" />
+                        <Input placeholder="Age"  />
                     </Form.Item>
-                    <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
-                    <Select
-                            placeholder="Select your gender">
-                            <Option value="Female">Female</Option>
-                            <Option value="Male">Male</Option>
-                        </Select>
-                        </Form.Item>
+                    <Form.Item label="Gender" name="gender">
+                        <Input placeholder="Gender"  />
+                    </Form.Item>
                     <Form.Item label="Contact no" name="contact_no">
-                        <Input placeholder="Contact_no" />
-                    </Form.Item>
-
+                        <Input placeholder="Contact_no"  />
+                    </Form.Item>                    
                     <Button
-                        className="primary-button my-2 full-width-button"
+                        className="primary-button my-2 full-width-button" 
                         htmlType="submit">
-                        Sign-Up
+                        Update                        
                     </Button>
-                    <Link to="/" className="anchor mt-2">
-                        Already have an account? Login Here
+                    <Link to={`/profile/${id}`}>
+                    <Button
+                        className="primary-button my-2 full-width-button" 
+                        htmlType="button">
+                        Back to Profile                       
+                    </Button>
                     </Link>
                 </Form>
             </div>
@@ -69,4 +66,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default UpdateProfile;
