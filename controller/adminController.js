@@ -2,6 +2,7 @@ const Cabin = require("../models/cabinModel");
 const Doctor= require("../models/doctorModel");
 const Dept = require("../models/deptModel");
 const booking = require("../models/bookingModel");
+const User = require("../models/userModel");
 
 
 exports.adddoctor = (req, res,next) => {
@@ -68,6 +69,34 @@ exports.getallappointments = async (req, res) => {
       });
     }
   };
+
+  exports.adminlogin = (async (req, res, next) => {
+    const { email, password } = req.body
+    if (!email || !password) {
+      return res.status(400).json({
+        message: 'enter email and password'
+      })
+    }
+    const user = await User.findOne({ email }).select('+password')
+    const token = user.getJwtToken()    
+    if (!user) {
+      return res.status(401).json({
+        message: 'Wrong email or password'
+      })
+    }
+    const passCheck = await user.comparePassword(password)
+    if (!passCheck) {
+      return res.status(402).json({ message: 'Invalid password' })
+    } else if (passCheck && user.role == 'admin') {
+  
+      res.status(200).send({
+        success: true,
+        data: user,
+      });
+  
+    }
+  
+  })
 
 
 

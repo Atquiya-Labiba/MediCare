@@ -72,9 +72,7 @@ exports.login = (async (req, res, next) => {
       success: true,
       data: user,
     });
-
   }
-
 })
 
 exports.bookappointment = async (req, res) => {
@@ -252,6 +250,12 @@ exports.updateprofile = async (req, res, next) => {
       if (req.body.contact_no) {
         user.contact_no = req.body.contact_no
       }
+      if (req.body.prescription) {
+        console.log(req.body);
+        console.log(req.prescription);
+        res.json({ message: "Successfully uploaded files" });
+      }
+      
     }
     const updateduser = await user.save();
     console.log(`${user}`)

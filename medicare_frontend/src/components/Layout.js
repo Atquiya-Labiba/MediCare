@@ -1,7 +1,8 @@
 import React from "react";
 import "../layout.css";
-import { Link} from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { useSelector} from "react-redux";
+import { Button } from "antd";
 
 
 function Layout({ children }) {
@@ -38,10 +39,15 @@ function Layout({ children }) {
             name: "Cabin",
             path: `/cabin`,
             icon: "ri-file-list-3-line",
-        }
+        },        
     ];
 
     const menuToBeRendered = userMenu
+    const navigate = useNavigate();
+    const logout = () =>{
+        localStorage.removeItem('user')
+        navigate("/")
+    }
 
     return (
         <div className="main">
@@ -61,7 +67,10 @@ function Layout({ children }) {
                 </div>
                 <div className="content">
                     <div className="header">
-                        MediCare
+                        MediCare /
+                        <Button onClick={logout}>Logout</Button>
+                        
+
                     </div>
                     <div className="body">{children}</div>
                 </div>

@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
-import { Button, Form, Input } from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input, Radio } from "antd";
 import axios from "axios";
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import { setUser } from "../redux/userSlice";
 
 
 function Login() {
+    const {loading}=useSelector(state=>state.alerts);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const navigate = useNavigate();   
     const onFinish = async (values) => {
         try {
             dispatch(showLoading());
             const response = await axios.post("/api/user/", values);
             dispatch(hideLoading());
-            if (response.status === 200) {
+            if (response.status === 200) {                
                 dispatch(setUser(response.data.data));
                 toast.success("Login success");
                 toast("Redirecting to Home Page");
-                localStorage.setItem("user", JSON.stringify(response.data.user));
+                localStorage.setItem("user", JSON.stringify(response.data.data));
                 navigate("/Home")
             } else {
                 toast.error("Login error");
@@ -52,6 +53,10 @@ function Login() {
                     </Button>
                     <Link to="/signup" className="anchor mt-2">
                         Not a Member? Signup
+                    </Link>
+                    <br></br>
+                    <Link to="/adminlogin" className="anchor mt-2">
+                        Admin
                     </Link>
                 </Form>
             </div>

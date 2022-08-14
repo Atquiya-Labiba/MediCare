@@ -47,7 +47,11 @@ function UpdateProfile() {
                     </Form.Item>
                     <Form.Item label="Contact no" name="contact_no">
                         <Input placeholder="Contact_no"  />
-                    </Form.Item>                    
+                    </Form.Item> 
+                    <Form.Item>
+                    <p>Prescription:</p>               
+                    <Input type="file" name="prescription" />
+                    </Form.Item>
                     <Button
                         className="primary-button my-2 full-width-button" 
                         htmlType="submit">

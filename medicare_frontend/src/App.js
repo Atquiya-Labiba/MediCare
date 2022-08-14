@@ -16,7 +16,9 @@ import Department from './pages/Department';
 import SelectDoctor from './pages/SelectDoctor';
 import Profile from './pages/PatientProfile';
 import Cabin from './pages/Cabin';
+import AdminLogin from './pages/AdminLogin';
 import UpdateProfile from './pages/Updateprofile';
+
 
 function App() {
   return (
@@ -36,11 +38,10 @@ function App() {
         <Route path='/updateprofile/:id' element={<UpdateProfile />} />
         {/* Admin panel */}
         <Route path='/adddoctor' element={<AddDoctor />} />
+        <Route path='/adminlogin' element={<AdminLogin />} />
         <Route path='/adddept' element={<AddDept />} />
         <Route path='/addcabin' element={<AddCabin />} />        
-        <Route path='/appointmentinfo' element={<CancelAppointment />} />
-
-        
+        <Route path='/appointmentinfo' element={<CancelAppointment />} />        
        
       </Routes>
     </BrowserRouter>
