@@ -30,10 +30,10 @@ const AdminLayout=({children}) => {
                         <span /> Add Cabin / &nbsp; <span />
                     </Link>
                     <Link to="/adddept" className="anchor mt-2">
-                        <span /> Add Department   &nbsp; <span />
+                        <span /> Add Department /   &nbsp; <span />
                     </Link>
                     <Link to="/appointmentinfo" className="anchor mt-2">
-                        <span /> All Appointments /   &nbsp; <span />
+                        <span /> All Appointments    &nbsp; <span />
                     </Link>
                     <Button onClick={logout}>Logout</Button>
 

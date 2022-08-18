@@ -9,7 +9,7 @@ import Appointment from './pages/Appointment';
 import AddDoctor from './pages/AddDoctor';
 import AddCabin from './pages/AddCabin';
 import AddDept from './pages/AddDept';
-import CancelAppointment from './pages/CancelAppointment';
+import ApptInfo from './pages/ApptInfo';
 import BookAppointment from './pages/BookAppointment';
 import { Toaster } from "react-hot-toast";
 import Department from './pages/Department';
@@ -18,6 +18,7 @@ import Profile from './pages/PatientProfile';
 import Cabin from './pages/Cabin';
 import AdminLogin from './pages/AdminLogin';
 import UpdateProfile from './pages/Updateprofile';
+
 
 
 function App() {
@@ -35,13 +36,13 @@ function App() {
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/cabin' element={<Cabin/>} />
         <Route path='/department' element={<Department />} />
-        <Route path='/updateprofile/:id' element={<UpdateProfile />} />
+        <Route path='/updateprofile/:id' element={<UpdateProfile />} />        
         {/* Admin panel */}
         <Route path='/adddoctor' element={<AddDoctor />} />
         <Route path='/adminlogin' element={<AdminLogin />} />
         <Route path='/adddept' element={<AddDept />} />
         <Route path='/addcabin' element={<AddCabin />} />        
-        <Route path='/appointmentinfo' element={<CancelAppointment />} />        
+        <Route path='/appointmentinfo' element={<ApptInfo />} />        
        
       </Routes>
     </BrowserRouter>

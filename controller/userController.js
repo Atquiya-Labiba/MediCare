@@ -6,8 +6,7 @@ const dept = require("../models/deptModel");
 const cabin = require("../models/cabinModel");
 const bcrypt = require("bcryptjs");
 const _jwt = require('jsonwebtoken')
-
-
+const multer = require('multer')
 
 
 exports.signup = async (req, res) => {
@@ -174,7 +173,6 @@ exports.profile = async (req, res) => {
   try {
 
     const profile = await User.find({ userId: req.params.id });
-    // console.log(`${userId}`)       
     res.status(200).send({
       message: "Profile info fetched successfully",
       success: true,
@@ -232,8 +230,7 @@ exports.cabin = async (req, res) => {
 exports.updateprofile = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
-    if (user) {
-      console.log(`${req.body.age}`)
+    if (user) {      
       if (req.body.email) {
         user.email = req.body.email
       }
@@ -254,9 +251,9 @@ exports.updateprofile = async (req, res, next) => {
         console.log(req.body);
         console.log(req.prescription);
         res.json({ message: "Successfully uploaded files" });
-      }
-      
+      }      
     }
+
     const updateduser = await user.save();
     console.log(`${user}`)
     res.status(200).send({
@@ -274,6 +271,27 @@ exports.updateprofile = async (req, res, next) => {
     });
   }
 };
+
+
+
+exports.deleteappointments = async (req, res) => {
+  try {
+    const appt = await booking.findById(req.params.id);
+    await appt.remove()       
+    res.status(200).send({
+      message: "Appointment deleted successfully",
+      success: true,      
+    });
+  } catch (error) {    
+    res.status(500).send({
+      message: "Error to delete appointment",
+      success: false,
+      error,
+    });
+  }
+};
+
+
 
 
 

@@ -51,11 +51,11 @@ function Login() {
                         htmlType="submit">
                         Login
                     </Button>
-                    <Link to="/signup" className="anchor mt-2">
+                    <Link to="/signup" className="anchor mt-2" style={{marginLeft: 90}}>
                         Not a Member? Signup
                     </Link>
                     <br></br>
-                    <Link to="/adminlogin" className="anchor mt-2">
+                    <Link to="/adminlogin" className="anchor mt-2" style={{marginLeft: 150}}>
                         Admin
                     </Link>
                 </Form>

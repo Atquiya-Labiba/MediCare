@@ -68,7 +68,7 @@ exports.getallappointments = async (req, res) => {
         error,
       });
     }
-  };
+  }; 
 
   exports.adminlogin = (async (req, res, next) => {
     const { email, password } = req.body

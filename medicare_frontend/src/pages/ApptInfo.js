@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import moment from "moment";
 import Layout from '../components/AdminLayout';
 
 
 function EditAppointment() {
-    const [appointments, setAppointments] = useState([]);
-    const [posts, setPosts] = useState([]);
+    const [appointments, setAppointments] = useState([]);    
     const dispatch = useDispatch();
     const getAppointments = async () => {
         try {
@@ -29,6 +28,7 @@ function EditAppointment() {
     useEffect(() => {
         getAppointments();
     }, []);
+    
     const columns = [
         {
             title: "Doctor",
@@ -36,6 +36,15 @@ function EditAppointment() {
             render: (text, record) => (
                 <span>
                     {record.docname}
+                </span>
+            ),
+        },
+        {
+            title: "Appointment ID",
+            dataIndex: "_id",
+            render: (text, record) => (
+                <span>
+                    {record._id}
                 </span>
             ),
         },
@@ -67,18 +76,7 @@ function EditAppointment() {
                     {moment(record.time).format("HH:mm")}
                 </span>
             ),
-        },
-
-        {
-            title: "Appointment status",
-            dataIndex: "status",
-            render: (text, record) => (
-                <button onClick={() => console.log(record)}>
-                    {"Cancel Appointment"}
-                </button>
-            ),
-        },
-
+        },        
     ];
     return (
         <Layout>

@@ -1,13 +1,13 @@
 import React from "react";
 import "../layout.css";
-import { Link,useNavigate} from "react-router-dom";
-import { useSelector} from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Button } from "antd";
 
 
 function Layout({ children }) {
     const { user } = useSelector((state) => state.user);
-    const id=user._id 
+    const id = user._id
 
     const userMenu = [
         {
@@ -39,12 +39,12 @@ function Layout({ children }) {
             name: "Cabin",
             path: `/cabin`,
             icon: "ri-file-list-3-line",
-        },        
+        },
     ];
 
     const menuToBeRendered = userMenu
     const navigate = useNavigate();
-    const logout = () =>{
+    const logout = () => {
         localStorage.removeItem('user')
         navigate("/")
     }
@@ -66,11 +66,9 @@ function Layout({ children }) {
                     </div>
                 </div>
                 <div className="content">
-                    <div className="header">
-                        MediCare /
+                    <div className="header" >
+                        MediCare
                         <Button onClick={logout}>Logout</Button>
-                        
-
                     </div>
                     <div className="body">{children}</div>
                 </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, DatePicker, Select, TimePicker, Row, Col } from "antd";
+import { Button, DatePicker, TimePicker, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -8,9 +8,6 @@ import "../layout.css";
 import { useSearchParams } from "react-router-dom";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import moment from "moment";
-const { Option } = Select;
-
-
 
 
 function BookAppointment() {
@@ -61,7 +58,7 @@ function BookAppointment() {
                 }
             );
             if (response.data.success) {
-                toast.success(response.data.data);
+                toast.success(response.data.data);               
 
             }
         } catch (error) {
@@ -70,7 +67,6 @@ function BookAppointment() {
             dispatch(hideLoading());
         }
     };
-
     return (
         <Layout>
             <div>
