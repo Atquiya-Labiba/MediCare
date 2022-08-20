@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const multer = require('multer')
-const { signup, login, bookappointment, getdoctors, availabilitycheck, getappointments, profile, department, cabin, updateprofile, deleteappointments, getrecords, updaterecord, recordtype } = require('../controller/userController');
+const { signup, login, bookappointment, getdoctors, availabilitycheck, getappointments, profile, department, cabin, updateprofile, deleteappointments, updaterecord,  viewrecords } = require('../controller/userController');
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -43,8 +43,7 @@ router.get('/department', department)
 router.get('/cabin', cabin)
 router.delete('/deleteappointments/:id', deleteappointments)
 router.put('/updateprofile/:id', updateprofile)
-router.get('/getrecords/:id', getrecords)
-router.get('/recordtype/:id', recordtype)
+router.get('/viewrecords/:recId/:userId', viewrecords)
 router.post('/upload', upload.single('image'), (req, res) => {
     res.send(`/${req.file.path}`)
     

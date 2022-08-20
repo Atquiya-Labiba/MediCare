@@ -5,7 +5,8 @@ import { showLoading, hideLoading } from "../redux/alertsSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { Button, Input, Form } from 'antd';
+import { Button, Input, Form, Select } from 'antd';
+const { Option } = Select;
 
 
 
@@ -14,7 +15,8 @@ import { Button, Input, Form } from 'antd';
 
 function UploadRecord() {
     const [image, setImage] = useState('')
-    const [type, setType]=useState('')
+    const [type, setType] = useState('')
+    const [name, setName] = useState('')
     const { user } = useSelector((state) => state.user);
     const id = user._id
     const dispatch = useDispatch();
@@ -44,7 +46,7 @@ function UploadRecord() {
     const onFinish = async () => {
         try {
             dispatch(showLoading());
-            const response = await axios.post(`/api/user/updaterecord/${id}`, {medical_record:image,record_type:type});
+            const response = await axios.post(`/api/user/updaterecord/${id}`, { name: name, medical_image: image, type: type });
             dispatch(hideLoading());
             if (response.status === 200) {
                 toast.success("Success")
@@ -56,6 +58,22 @@ function UploadRecord() {
         }
     };
 
+    const handleType = (value) => {
+        switch (value) {
+            case 'Tests':
+                setType("Tests")
+                return;
+
+            case 'Prescription':
+                setType("Prescription")
+                return;
+
+            case 'X-Ray':
+                setType("X-Ray")
+                return;
+        }
+    };
+
     return (
         <Layout>
             <h1>Upload Your Records</h1>
@@ -63,8 +81,19 @@ function UploadRecord() {
                 <div className="authentication-form card p-3">
                     <h1 className="card-title">Edit Information</h1>
                     <Form layout="horizontal" onFinish={onFinish}>
-                        <Form.Item label="Type" name="record_type">
-                            <Input placeholder="Type" onChange={(e) => setType(e.target.value)} />
+                        <Form.Item label="Name" name="name">
+                            <Input placeholder="Name" onChange={(e) => setName(e.target.value)} />
+                        </Form.Item>
+                        <Form.Item name="type" label="Record Type" rules={[{ required: true }]}>
+                            <Select
+                                placeholder="Select a type"
+                                onChange={handleType}
+                                allowClear
+                            >
+                                <Option value="Tests">Tests</Option>
+                                <Option value="Prescription">Prescription</Option>
+                                <Option value="X-Ray">X-Ray</Option>
+                            </Select>
                         </Form.Item>
                         <Form.Item label='Choose file' name='medical_record'>
                             <Input type='file' onChange={uploadFileHandler} /></Form.Item>

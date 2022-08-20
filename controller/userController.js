@@ -237,7 +237,7 @@ exports.updateprofile = async (req, res, next) => {
       if (req.body.contact_no) {
         user.contact_no = req.body.contact_no
       }
-      
+
     }
 
     const updateduser = await user.save();
@@ -277,14 +277,19 @@ exports.deleteappointments = async (req, res) => {
   }
 };
 
-exports.getrecords = async (req, res) => {
+exports.viewrecords = async (req, res) => {
   try {
-    const records = await User.findById(req.params.id);
-    res.status(200).send({
-      message: "Records fetched successfully",
-      success: true,
-      data: records,
-    });
+    const user = await User.findById(req.params.userId);
+    user.medical_records.map(async (record) => {
+      if (record._id.toString() === req.params.recId) {
+        res.status(200).send({
+          message: "Record info fetched successfully",
+          success: true,
+          data: record,
+        });
+
+      }
+    })
   } catch (error) {
     res.status(500).send({
       message: "Error to getrecord's info",
@@ -310,26 +315,32 @@ exports.recordtype = async (req, res) => {
   }
 };
 
-
 exports.updaterecord = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
     if (user) {
 
-      if (req.body.record_type) {
-        user.record_type = req.body.record_type
-      }
-      if (req.body.medical_record) {
-        user.medical_record = req.body.medical_record
-      }
-    }
+      // if (req.body.record_type) {
+      //   user.record_type = req.body.record_type
+      // }
+      // if (req.body.medical_record) {
+      //   user.medical_record = req.body.medical_record
+      // }
 
-    const updateduser = await user.save();    
-    res.status(200).send({
-      message: "User info fetched successfully",
-      success: true,
-      data: updateduser,
-    });
+      const rec = {
+        name: req.body.name,
+        type: req.body.type,
+        medical_image: req.body.medical_image
+      }
+      user.medical_records.push(rec)
+
+      const updateduser = await user.save();
+      res.status(200).send({
+        message: "User info fetched successfully",
+        success: true,
+        data: updateduser,
+      });
+    }
   }
   catch (error) {
     console.log(error);

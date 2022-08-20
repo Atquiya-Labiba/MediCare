@@ -30,10 +30,7 @@ function Department() {
             title: "Name",
             dataIndex: "name",
             render: (text, record) => (
-                <Link to={'/getdoctors?name=' +record.name}>{text}</Link>
-                // <span>
-                //     {record.name}
-                // </span>
+                <Link to={'/getdoctors?name=' + record.name}>{text}</Link>
             ),
         },
 

@@ -2,64 +2,69 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from '../components/Layout';
 import { showLoading, hideLoading } from "../redux/alertsSlice";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Card } from "antd";
+import { Table } from "antd";
 
 
 
 
 
 function ViewRecord() {
+    const onChange = (filters) => {
+        console.log('params', filters);
+    };
     const [medrecords, setRecords] = useState([]);
     const [rectype, setType] = useState([]);
     const { user } = useSelector((state) => state.user);
     const id = user._id
-    // const dispatch = useDispatch();
-    
-    // const getRecords = async () => {
-    //     try {
-    //         dispatch(showLoading());
-    //         const response = await axios.get(`/api/user/getrecords/${id}`);
-    //         dispatch(hideLoading());
-    //         if (response.data.success) {
-    //             setRecords(response.data.data);
-    //         }
-    //     } catch (error) {
-    //         dispatch(hideLoading());
-    //     }
-    // };
+        
+    const columns = [
+        {
+            title: "Name",
+            dataIndex: "name",
+            render: (text, record) => (
+                <span>
+                    {record.name}
+                </span>
+            ),
+        },
+        {
+            title: "Record Type",
+            dataIndex: "type",
+            filters: [
+                {
+                    text: 'Prescription',
+                    value: 'Prescription',
+                },
+                {
+                    text: 'X-Ray',
+                    value: 'X-Ray',
+                },
+                {
+                    text: 'Tests',
+                    value: 'Tests',
+                },
+            ],
+            onFilter: (value, record) => record.type.indexOf(value) === 0,
 
-    // useEffect(() => {
-    //     getRecords();
-    // }, []);
-   
-    // const getRecordType = async () => {
-    //     try {
-    //         dispatch(showLoading());
-    //         const response = await axios.get(`/api/user/recordtype/${id}`);
-    //         dispatch(hideLoading());
-    //         if (response.data.success) {
-    //             setType(response.data.data);
-    //         }
-    //     } catch (error) {
-    //         dispatch(hideLoading());
-    //     }
-    // };
+        },
+        {
+            title: "Image",
+            dataIndex: "medical_image",
+            render: (text, record) => (
+                <Link to={`/viewimage/${record._id}`}>{"View"}</Link>
 
-    // useEffect(() => {
-    //     getRecordType();
-    // }, []);
+            ),
+        },
+    ];
     return (
         <Layout>
             <h1 className="page-header">Medical Records </h1>
             <hr />
             <div className="site-card-border-less-wrapper">
-                <Card>
-                    <div className="additional">
-                        <p className="medical_record">Medical Record: {<img alt="Record" src={user.medical_record}/>}</p>
-                        <p className="record_type">Type: {user.record_type}</p>
-                    </div>
-                </Card>
+                <Table columns={columns} dataSource={user.medical_records} onChange={onChange} />
             </div>
 
         </Layout>

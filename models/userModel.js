@@ -1,6 +1,26 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const _jwt = require('jsonwebtoken')
+
+
+
+const recordSchema = new mongoose.Schema({
+    name: {
+        type: String,
+    },
+
+    type: {
+        type: String,
+        required: true
+    },
+
+    medical_image: {
+        type: String,
+        required: true
+    }
+})
+
+
 const userSchema = new mongoose.Schema({
 
 
@@ -36,18 +56,13 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
 
-    medical_record: {
-        type: String,        
-    },
-    record_type:{
-        type: String,
-    },
+    medical_records: [recordSchema],
 
-    role:{
+    role: {
         type: String,
-        enum:['user','admin'],
-        default:'user',
-    },   
+        enum: ['user', 'admin'],
+        default: 'user',
+    },
 
 }, { timestamps: true });
 
