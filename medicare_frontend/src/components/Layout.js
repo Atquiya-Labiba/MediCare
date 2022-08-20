@@ -23,12 +23,12 @@ function Layout({ children }) {
         {
             name: "Appointments",
             path: `/getappointments/${id}`,
-            icon: "ri-file-list-3-line",
+            icon: "ri-bill-line",
         },
         {
             name: "Profile",
             path: `/profile/${id}`,
-            icon: "ri-file-list-3-line",
+            icon: "ri-account-circle-line",
         },
         {
             name: "Department",
@@ -39,7 +39,7 @@ function Layout({ children }) {
             name: "Cabin",
             path: `/cabin`,
             icon: "ri-file-list-3-line",
-        },
+        },        
     ];
 
     const menuToBeRendered = userMenu

@@ -23,6 +23,9 @@ const AdminLayout=({children}) => {
                         margin: '16px 0',
                     }}
                 >
+                    <Link to="/admindashboard" className="anchor mt-2">
+                        <span /> &nbsp; Dashboard /  <span />
+                    </Link>
                     <Link to="/adddoctor" className="anchor mt-2">
                         <span /> &nbsp; Add Doctor / &nbsp; <span />
                     </Link>

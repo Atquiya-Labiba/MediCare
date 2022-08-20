@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const router = express.Router();
@@ -14,6 +15,9 @@ const port = process.env.PORT || 5000;
 
 app.use('/api/user', userRoute);
 app.use('/api/admin', adminRoute);
+
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.listen(port, () => console.log(`Server started at ${port}`));
 

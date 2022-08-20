@@ -1,25 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 
 
 function UpdateProfile() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const dispatch = useDispatch(); 
+    const [filename, setFileName]=useState("");   
     const { user } = useSelector((state) => state.user);
     const id = user._id
     const onFinish = async (values) => {
         try {
-            dispatch(showLoading());
-            console.log(id)
+            dispatch(showLoading());            
             const response = await axios.put(`/api/user/updateprofile/${id}`,values);
             dispatch(hideLoading());
-            if (response.status === 201) {
+            if (response.status === 200) {
                 toast.success("Success")                
             }
         } catch (error) {
@@ -47,11 +46,7 @@ function UpdateProfile() {
                     </Form.Item>
                     <Form.Item label="Contact no" name="contact_no">
                         <Input placeholder="Contact_no"  />
-                    </Form.Item> 
-                    <Form.Item>
-                    <p>Prescription:</p>               
-                    <Input type="file" name="prescription" />
-                    </Form.Item>
+                    </Form.Item>                     
                     <Button
                         className="primary-button my-2 full-width-button" 
                         htmlType="submit">

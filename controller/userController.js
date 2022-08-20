@@ -5,8 +5,7 @@ const booking = require("../models/bookingModel");
 const dept = require("../models/deptModel");
 const cabin = require("../models/cabinModel");
 const bcrypt = require("bcryptjs");
-const _jwt = require('jsonwebtoken')
-const multer = require('multer')
+
 
 
 exports.signup = async (req, res) => {
@@ -86,7 +85,6 @@ exports.bookappointment = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error booking appointment",
       success: false,
@@ -121,7 +119,6 @@ exports.availabilitycheck = async (req, res) => {
     }
   }
   catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error booking appointment",
       success: false,
@@ -139,7 +136,6 @@ exports.getdoctors = async (req, res) => {
       data: doctors,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error to get doctor's info",
       success: false,
@@ -158,7 +154,6 @@ exports.getappointments = async (req, res) => {
       data: appointments,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error to get appointment's info",
       success: false,
@@ -166,8 +161,6 @@ exports.getappointments = async (req, res) => {
     });
   }
 };
-
-
 
 exports.profile = async (req, res) => {
   try {
@@ -179,7 +172,6 @@ exports.profile = async (req, res) => {
       data: profile,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error to get profile's info",
       success: false,
@@ -198,7 +190,6 @@ exports.department = async (req, res) => {
       data: departments,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error to get department info",
       success: false,
@@ -217,7 +208,6 @@ exports.cabin = async (req, res) => {
       data: cabins,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error to get cabin info",
       success: false,
@@ -230,7 +220,7 @@ exports.cabin = async (req, res) => {
 exports.updateprofile = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
-    if (user) {      
+    if (user) {
       if (req.body.email) {
         user.email = req.body.email
       }
@@ -247,11 +237,7 @@ exports.updateprofile = async (req, res, next) => {
       if (req.body.contact_no) {
         user.contact_no = req.body.contact_no
       }
-      if (req.body.prescription) {
-        console.log(req.body);
-        console.log(req.prescription);
-        res.json({ message: "Successfully uploaded files" });
-      }      
+      
     }
 
     const updateduser = await user.save();
@@ -277,12 +263,12 @@ exports.updateprofile = async (req, res, next) => {
 exports.deleteappointments = async (req, res) => {
   try {
     const appt = await booking.findById(req.params.id);
-    await appt.remove()       
+    await appt.remove()
     res.status(200).send({
       message: "Appointment deleted successfully",
-      success: true,      
+      success: true,
     });
-  } catch (error) {    
+  } catch (error) {
     res.status(500).send({
       message: "Error to delete appointment",
       success: false,
@@ -290,6 +276,75 @@ exports.deleteappointments = async (req, res) => {
     });
   }
 };
+
+exports.getrecords = async (req, res) => {
+  try {
+    const records = await User.findById(req.params.id);
+    res.status(200).send({
+      message: "Records fetched successfully",
+      success: true,
+      data: records,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: "Error to getrecord's info",
+      success: false,
+      error,
+    });
+  }
+};
+exports.recordtype = async (req, res) => {
+  try {
+    const type = await User.findById(req.params.id);
+    res.status(200).send({
+      message: "Records type fetched successfully",
+      success: true,
+      data: type,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: "Error to getrecord's type info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
+exports.updaterecord = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id)
+    if (user) {
+
+      if (req.body.record_type) {
+        user.record_type = req.body.record_type
+      }
+      if (req.body.medical_record) {
+        user.medical_record = req.body.medical_record
+      }
+    }
+
+    const updateduser = await user.save();    
+    res.status(200).send({
+      message: "User info fetched successfully",
+      success: true,
+      data: updateduser,
+    });
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error to get user info",
+      success: false,
+      error,
+    });
+  }
+};
+
+
+
+
+
 
 
 

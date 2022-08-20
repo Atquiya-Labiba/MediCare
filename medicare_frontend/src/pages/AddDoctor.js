@@ -2,15 +2,15 @@ import React from 'react';
 import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import Layout from '../components/AdminLayout';
+const { TextArea } = Input
 
 
 function AddDoctor() {
     const onFinish = async (values) => {
         try {
             const response = await axios.post("/api/admin/adddoctor", values);
-            if (response.status === 201) {
+            if (response.status === 200) {
                 toast.success("Success")
             }
         } catch (error) {
@@ -32,7 +32,11 @@ function AddDoctor() {
                             <Input placeholder="Department" />
                         </Form.Item>
                         <Form.Item label="Degree" name="degree">
-                            <Input placeholder="Degree" />
+                            <TextArea placeholder="Degree"
+                                autoSize={{
+                                    minRows: 3,
+                                    maxRows: 6,
+                                }} />
                         </Form.Item>
                         <Button
                             className="primary-button my-2 full-width-button"

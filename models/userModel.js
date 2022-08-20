@@ -36,19 +36,18 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
 
-    prescription: {
-        type: String
+    medical_record: {
+        type: String,        
+    },
+    record_type:{
+        type: String,
     },
 
     role:{
         type: String,
         enum:['user','admin'],
         default:'user',
-    },
-
-    profilepic: {
-        type:String,
-    },
+    },   
 
 }, { timestamps: true });
 

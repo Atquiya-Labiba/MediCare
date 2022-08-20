@@ -2,15 +2,15 @@ import React from 'react';
 import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import Layout from '../components/AdminLayout';
+const { TextArea } = Input;
 
 
 function AddDept() {
     const onFinish = async (values) => {
         try {
             const response = await axios.post("/api/admin/adddept", values);
-            if (response.status === 201) {
+            if (response.status === 200) {
                 toast.success("Success")
             }
         } catch (error) {
@@ -29,10 +29,18 @@ function AddDept() {
                             <Input placeholder="Name" />
                         </Form.Item>
                         <Form.Item label="Description" name="description">
-                            <Input placeholder="Description" />
+                            <TextArea placeholder="Description"
+                                autoSize={{
+                                    minRows: 3,
+                                    maxRows: 10,
+                                }} />
                         </Form.Item>
                         <Form.Item label="Facility" name="facility">
-                            <Input placeholder="Facility" />
+                            <TextArea placeholder="Facility"
+                                autoSize={{
+                                    minRows: 3,
+                                    maxRows: 10,
+                                }} />
                         </Form.Item>
 
                         <Button

@@ -4,25 +4,22 @@ import Layout from '../components/Layout';
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Card, Button } from 'antd';
-const { Meta } = Card;
+import { Button, Card } from 'antd';
+import { Form } from 'react-bootstrap';
 
 
 
 
 function Profile() {
     const [patients, setPatients] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const onChange = (checked) => {
-        setLoading(!checked);
-    };
+    const [uploading, setUploading] = useState(false);
+    const [image, setImage] = useState('')
     const { user } = useSelector((state) => state.user);
     const id = user._id
     const dispatch = useDispatch();
     const getPatients = async () => {
         try {
-            dispatch(showLoading());
-            console.log(id)
+            dispatch(showLoading());            
             const resposne = await axios.get(`/api/user/profile/${id}`);
             dispatch(hideLoading());
             if (resposne.data.success) {
@@ -35,7 +32,7 @@ function Profile() {
 
     useEffect(() => {
         getPatients();
-    }, []);
+    }, []);  
 
     return (
         <Layout>
@@ -47,13 +44,28 @@ function Profile() {
                         width: 300,
                     }}
                 >
-                    <div className="additional">                        
+                    <div className="additional">
                         <p className="name">Name: {user.name}</p>
                         <p className="age">Age: {user.age}</p>
                         <p className="gender">Gender: {user.gender}</p>
                         <p className="email">Email: {user.email}</p>
                         <p className="contact_no">Contact: {user.contact_no}</p>
-                        <p className="prescription">Prescription: {user.prescription}</p>
+                        <p className="medicalrecord">Medical Record                            
+                        </p>
+                        <Link to={'/upload'}>
+                        <Button
+                            className="primary-button my-2 full-width-button"
+                            htmlType="button">
+                            Upload Medical Record                            
+                        </Button>
+                        </Link> 
+                        <Link to={`/getrecords/${id}`}>                      
+                        <Button
+                            className="primary-button my-2 full-width-button"
+                            htmlType="button">
+                            View Medical Records
+                        </Button>
+                        </Link> 
                         <Link to={`/updateprofile/${id}`}>
                             <button
                                 className="primary-button my-2 full-width-button"

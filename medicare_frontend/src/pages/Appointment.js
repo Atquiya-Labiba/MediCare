@@ -4,18 +4,17 @@ import Layout from '../components/Layout';
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { Table, Button} from "antd";
-import {DeleteOutlined} from '@ant-design/icons'
-
+import { Table } from "antd";
+import { DeleteOutlined } from '@ant-design/icons'
 import moment from "moment";
 
 function Appointment() {
-    const [appointments, setAppointments] = useState([]);    
-    const { user } = useSelector((state) => state.user);      
-    const id = user._id    
+    const [appointments, setAppointments] = useState([]);
+    const { user } = useSelector((state) => state.user);
+    const id = user._id
     const dispatch = useDispatch();
     const getAppointments = async () => {
-        try {            
+        try {
             dispatch(showLoading());
             const resposne = await axios.get(`/api/user/getappointments/${id}`);
             dispatch(hideLoading());
@@ -27,35 +26,19 @@ function Appointment() {
         }
     };
 
-    useEffect(() => {        
+    useEffect(() => {
         getAppointments();
-        console.log(appointments)
-    }, []);   
+    }, []);
 
-    // const cancelappointment = async (apptId) => {        
-    //     try {
-    //         console.log(apptId)
-    //         dispatch(showLoading());
-    //         const response = await axios.delete(`/api/user/deleteappointments/${appointments._id}`);
-    //         if (response.data.success) {
-    //             toast.success(response.data.data);
-    //         }
-    //     } catch (error) {
-    //         console.log(error.response.data)
-    //         toast.error("Cancel appointment error");
-    //         dispatch(hideLoading());
-    //     }
-    // };
-    const cancelappointment = async (record) => {        
-        try {            
+    const cancelappointment = async (record) => {
+        try {
             dispatch(showLoading());
             const response = await axios.delete(`/api/user/deleteappointments/${record}`);
             if (response.data.success) {
-                toast.success(response.data.data);
+                toast.success("Your Appointment is cancelled");
             }
         } catch (error) {
-            console.log(error.response.data)
-            toast.error("Cancel appointment error");
+            toast.error("Could not cancel appointment!");
             dispatch(hideLoading());
         }
     };
@@ -100,13 +83,13 @@ function Appointment() {
         },
         {
             title: "Action",
-            dataIndex: "_id",            
-            render: (record) => (   
-                <DeleteOutlined                      
-                 onClick={() =>cancelappointment(record)
-                }>
-                </DeleteOutlined> 
-                
+            dataIndex: "_id",
+            render: (record) => (
+                <DeleteOutlined
+                    onClick={() => cancelappointment(record)
+                    }>
+                </DeleteOutlined>
+
             ),
         },
 

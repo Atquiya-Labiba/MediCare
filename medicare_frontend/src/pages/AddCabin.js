@@ -10,7 +10,7 @@ function AddCabin() {
     const onFinish = async (values) => {
         try {
             const response = await axios.post("/api/admin/addcabin", values);
-            if (response.status === 201) {
+            if (response.status === 200) {
                 toast.success("Success")
             }
         } catch (error) {

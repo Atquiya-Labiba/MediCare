@@ -18,7 +18,8 @@ import Profile from './pages/PatientProfile';
 import Cabin from './pages/Cabin';
 import AdminLogin from './pages/AdminLogin';
 import UpdateProfile from './pages/Updateprofile';
-
+import UploadRecord from './pages/UploadRecord';
+import ViewRecord from './pages/ViewRecord';
 
 
 function App() {
@@ -35,8 +36,10 @@ function App() {
         <Route path='/getappointments/:id' element={<Appointment />} />
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/cabin' element={<Cabin/>} />
-        <Route path='/department' element={<Department />} />
-        <Route path='/updateprofile/:id' element={<UpdateProfile />} />        
+        <Route path='/department' element={<Department />} />        
+        <Route path='/updateprofile/:id' element={<UpdateProfile />} />   
+        <Route path='/getrecords/:id' element={<ViewRecord />} />   
+        <Route path='/upload' element={<UploadRecord />} />      
         {/* Admin panel */}
         <Route path='/adddoctor' element={<AddDoctor />} />
         <Route path='/adminlogin' element={<AdminLogin />} />
