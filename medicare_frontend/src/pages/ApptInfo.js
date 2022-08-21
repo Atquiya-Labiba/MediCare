@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { Button, Table } from "antd";
+import { Table } from "antd";
 import moment from "moment";
 import Layout from '../components/AdminLayout';
 
 
 function EditAppointment() {
-    const [appointments, setAppointments] = useState([]);    
+    const [appointments, setAppointments] = useState([]);
     const dispatch = useDispatch();
     const getAppointments = async () => {
         try {
@@ -28,7 +27,7 @@ function EditAppointment() {
     useEffect(() => {
         getAppointments();
     }, []);
-    
+
     const columns = [
         {
             title: "Doctor",
@@ -76,7 +75,7 @@ function EditAppointment() {
                     {moment(record.time).format("HH:mm")}
                 </span>
             ),
-        },        
+        },
     ];
     return (
         <Layout>

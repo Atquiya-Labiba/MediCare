@@ -13,7 +13,7 @@ function AddCabin() {
             if (response.status === 200) {
                 toast.success("Success")
             }
-        } catch (error) {
+        } catch (error) {            
             toast.error("Something went wrong");
         }
     };
@@ -34,12 +34,9 @@ function AddCabin() {
                             <Select
                                 placeholder="Select cabin status">
                                 <Option value="Available">Available</Option>
-                                <Option value="Not Available">Not available</Option>
+                                <Option value="Not Available">Not Available</Option>
                             </Select>
-                        </Form.Item>
-                        <Form.Item label="Phone" name="phn_num">
-                            <Input placeholder="Contact Number" />
-                        </Form.Item>
+                        </Form.Item>                        
                         <Button
                             className="primary-button my-2 full-width-button"
                             htmlType="submit">

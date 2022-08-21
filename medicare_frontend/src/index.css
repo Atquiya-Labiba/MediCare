@@ -30,7 +30,7 @@ label {
 /* Styling for all the pages*/
 .card-title {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: bold;    
 }
 
 .normal-text {
@@ -39,7 +39,7 @@ label {
 
 .card {
     box-shadow: 0 0 2px gray;
-    border-radius: 0 !important;
+    border-radius: 0 !important;    
 }
 
 .primary-button {
@@ -52,7 +52,6 @@ label {
     width: max-content !important;
 }
 
-
 .full-width-button {
     width: 100% !important;
 }
@@ -60,32 +59,19 @@ label {
 .anchor {
     color: black !important;    
     cursor: pointer;
-    font-size: 16px !important;
-    
-    
+    font-size: 16px !important;    
 }
-
 
 /* for auth pages*/
 .authentication {
-    height: 100 vh;
+    height: 85vh !important;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;        
 }
 
 .authentication-form {
     width: 400px;
 }
 
-#components-layout-demo-fixed .logo {
-    float: left;
-    width: 120px;
-    height: 31px;
-    margin: 16px 24px 16px 0;
-    background: rgba(14, 14, 14, 0.2);
-  }
-  .site-layout .site-layout-background {
-    background: #fff;
-  }
 

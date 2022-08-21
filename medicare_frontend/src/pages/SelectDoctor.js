@@ -54,36 +54,36 @@ function SelectDoctor() {
       dataIndex: "department",
       filters: [
         {
-          text: 'Cardiology',
-          value: 'Cardiology',
+          text: 'CARDIOLOGY',
+          value: 'CARDIOLOGY',
         },
         {
-          text: 'Dermatology',
-          value: 'Dermatology',
+          text: 'DERMATOLOGY',
+          value: 'DERMATOLOGY',
         },
         {
-          text: 'Neonatology',
-          value: 'Neonatology',
+          text: 'NEONATOLOGY',
+          value: 'NEONATOLOGY',
         },
         {
-          text: 'Nutrition',
-          value: 'Nutrition',
+          text: 'NUTRITION',
+          value: 'NUTRITION',
         },
         {
-          text: 'ENT & Head Neck Surgery',
-          value: 'ENT & Head Neck Surgery',
+          text: 'ENT & HEAD NECK SURGERY',
+          value: 'ENT & HEAD NECK SURGERY',
         },
         {
-          text: 'Neurology',
-          value: 'Neurology',
+          text: 'NEUROLOGY',
+          value: 'NEUROLOGY',
         },
         {
-          text: 'Orthopedics',
-          value: 'Orthopedics',
+          text: 'ORTHOPEDICS',
+          value: 'ORTHOPEDICS',
         },
         {
-          text: 'Pediatrics',
-          value: 'Pediatrics',
+          text: 'PEDIATRICS',
+          value: 'PEDIATRICS',
         },
       ],
       onFilter: (value, record) => record.department.indexOf(value) === 0,

@@ -2,7 +2,7 @@ import React from "react";
 import "../layout.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Button } from "antd";
+
 
 
 function Layout({ children }) {
@@ -39,22 +39,19 @@ function Layout({ children }) {
             name: "Cabin",
             path: `/cabin`,
             icon: "ri-file-list-3-line",
-        },        
+        },
+
     ];
 
     const menuToBeRendered = userMenu
-    const navigate = useNavigate();
-    const logout = () => {
-        localStorage.removeItem('user')
-        navigate("/")
-    }
+    const navigate = useNavigate();    
 
     return (
         <div className="main">
             <div className="d-flex layout">
                 <div className="sidebar">
                     <div className="sidebar-header">
-                        <h1>Menu</h1>
+                        <h1 className="logo">MediCare</h1>
                     </div>
                     <div className="menu">
                         {menuToBeRendered.map((menu) => {
@@ -63,12 +60,18 @@ function Layout({ children }) {
                                 <Link to={menu.path}>{menu.name}</Link>
                             </div>
                         })}
+
+                        <div className="d-flex menu-item" onClick={() => {
+                                localStorage.removeItem('user')
+                                navigate("/") }}>
+                            <i className="ri-logout-circle-r-line"></i>
+                            <Link to="/">Logout</Link>
+                        </div>
                     </div>
                 </div>
                 <div className="content">
                     <div className="header" >
-                        MediCare
-                        <Button onClick={logout}>Logout</Button>
+                        <h1>Welcome to MediCare</h1>                        
                     </div>
                     <div className="body">{children}</div>
                 </div>

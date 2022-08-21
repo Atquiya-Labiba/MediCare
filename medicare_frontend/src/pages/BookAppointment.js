@@ -16,7 +16,7 @@ function BookAppointment() {
     const [time, setTime] = useState();
     const [date, setDate] = useState();
     const { user } = useSelector((state) => state.user);
-    const [searchParams] = useSearchParams()    
+    const [searchParams] = useSearchParams()
     const doctorname = (searchParams.get('name'))
 
 
@@ -31,15 +31,14 @@ function BookAppointment() {
                 }
             );
             if (response.data.success) {
-                toast.success(response.data.data);
+                toast.success("Slot Available");
                 setIsAvailable(true);
             }
             else {
                 toast.error(response.data.message);
             }
-        } catch (error) {
-            console.log(error)
-            toast.error("Booking appointment error");
+        } catch (error) {            
+            toast.error("Slot not Available");
             dispatch(hideLoading());
         }
     };
@@ -58,19 +57,19 @@ function BookAppointment() {
                 }
             );
             if (response.data.success) {
-                toast.success(response.data.data);               
+                toast.success("Appointment Booked");
 
             }
         } catch (error) {
             console.log(error)
-            toast.error("Booking appointment error");
+            toast.error("Could not book an appointment");
             dispatch(hideLoading());
         }
     };
     return (
         <Layout>
             <div>
-                <h1>Make an Appointment</h1>
+                <h1 className="page-header">Make An Appointment </h1>
                 <hr />
                 <Row>
                     <Col span={8} sm={24} xs={24} lg={8}>
@@ -92,13 +91,11 @@ function BookAppointment() {
                                 }}
                             />
                             <Button
-                                className="primary-button my-2 full-width-button" onClick={Availabilitycheck}
-                            >
+                                className="primary-button my-2 full-width-button" onClick={Availabilitycheck}>
                                 Check Availability
                             </Button>
                             {isAvailable && (<Button
-                                className="primary-button my-2 full-width-button" onClick={bookNow}
-                            >
+                                className="primary-button my-2 full-width-button" onClick={bookNow}>
                                 Book Now
                             </Button>)}
                         </div>

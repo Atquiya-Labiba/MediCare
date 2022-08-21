@@ -23,20 +23,20 @@ function AddDept() {
 
             <div className="authentication">
                 <div className="authentication-form card p-3">
-                    <h1 className="card-title">Department Information</h1>
+                    <h3 className="card-title">Department Info</h3>
                     <Form layout="vertical" onFinish={onFinish}>
                         <Form.Item label="Name" name="name">
                             <Input placeholder="Name" />
                         </Form.Item>
                         <Form.Item label="Description" name="description">
-                            <TextArea placeholder="Description"
+                            <TextArea placeholder="Add Description"
                                 autoSize={{
                                     minRows: 3,
                                     maxRows: 10,
                                 }} />
                         </Form.Item>
                         <Form.Item label="Facility" name="facility">
-                            <TextArea placeholder="Facility"
+                            <TextArea placeholder=" Add Facility"
                                 autoSize={{
                                     minRows: 3,
                                     maxRows: 10,

@@ -5,7 +5,7 @@ import { showLoading, hideLoading } from "../redux/alertsSlice";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Card } from "antd";
-import { Table } from "antd";
+
 
 
 
@@ -44,7 +44,7 @@ function Report() {
             <div className="site-card-border-less-wrapper">
                 <Card>
                     <div className="additional">
-                        <p className="medical_record">Medical Record: {<img alt="Record" src={record.medical_image}/>}</p>
+                        <p className="medical_record" style={{fontWeight:"bold", fontSize:"20px"}}>Medical Record:</p> {<img alt="Record" src={record.medical_image}/>}
                         
                     </div>
                 </Card>                

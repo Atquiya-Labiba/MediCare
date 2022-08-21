@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from '../components/Layout';
 import { showLoading, hideLoading } from "../redux/alertsSlice";
@@ -7,8 +7,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Button, Input, Form, Select } from 'antd';
 const { Option } = Select;
-
-
 
 
 
@@ -76,11 +74,12 @@ function UploadRecord() {
 
     return (
         <Layout>
-            <h1>Upload Your Records</h1>
+            <h1 className="page-header">Upload Your Records </h1>
+            <hr />
             <div className="authentication">
                 <div className="authentication-form card p-3">
-                    <h1 className="card-title">Edit Information</h1>
-                    <Form layout="horizontal" onFinish={onFinish}>
+                    <h1 className="card-title">Upload</h1>
+                    <Form layout="vertical" onFinish={onFinish}>
                         <Form.Item label="Name" name="name">
                             <Input placeholder="Name" onChange={(e) => setName(e.target.value)} />
                         </Form.Item>
@@ -88,8 +87,7 @@ function UploadRecord() {
                             <Select
                                 placeholder="Select a type"
                                 onChange={handleType}
-                                allowClear
-                            >
+                                allowClear>
                                 <Option value="Tests">Tests</Option>
                                 <Option value="Prescription">Prescription</Option>
                                 <Option value="X-Ray">X-Ray</Option>

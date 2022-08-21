@@ -15,14 +15,7 @@ const cabinSchema = new mongoose.Schema({
     price: {
         type: String,
         required: true
-    },
-
-    phn_num:{
-        type: Number,
-        required: true
-    },
-    
-    
+    }, 
 
 });
 

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Layout from '../components/Layout';
 import { showLoading, hideLoading } from "../redux/alertsSlice";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { Table } from "antd";
+import { Table, Tabs } from "antd";
+const { TabPane } = Tabs
 
 function Cabin() {
     const onChange = (filters) => {
-        console.log('params',filters);
-      };
+        console.log('params', filters);
+    };
     const [cabins, setCabin] = useState([]);
     const dispatch = useDispatch();
     const getCabin = async () => {
@@ -31,9 +31,9 @@ function Cabin() {
     const columns = [
         {
             title: "Type",
-            dataIndex: "type", 
-            sorter: (a, b) => a.type.localeCompare(b.type),            
-            render: (text, record) => (                
+            dataIndex: "type",
+            sorter: (a, b) => a.type.localeCompare(b.type),
+            render: (text, record) => (
                 <span>
                     {record.type}
                 </span>
@@ -42,46 +42,41 @@ function Cabin() {
 
         {
             title: "Status",
-            dataIndex: "status",           
+            dataIndex: "status",
             filters: [
                 {
-                  text: 'Available',
-                  value: 'Available',
+                    text: 'Available',
+                    value: 'Available',
                 },
                 {
-                  text: 'Not Available',
-                  value: 'Not Available',
+                    text: 'Not Available',
+                    value: 'Not Available',
                 },
-              ],
-              onFilter: (value, record) => record.status.indexOf(value) === 0,
+            ],
+            onFilter: (value, record) => record.status.indexOf(value) === 0,
         },
         {
             title: "Price",
             dataIndex: "price",
-            sorter: (a, b) => a.price.localeCompare(b.price),           
+            sorter: (a, b) => a.price.localeCompare(b.price),
             render: (text, record) => (
                 <span>
                     {record.price}
                 </span>
             ),
         },
-
-        {
-            title: "Contact Info",
-            dataIndex: "phn_num",                     
-            render: (text, record) => (
-                <span>
-                    {record.phn_num}
-                </span>
-            ),
-        },
+        
     ];
 
     return (
         <Layout>
             <h1 className="page-header">Cabin </h1>
             <hr />
-            <Table columns={columns} dataSource={cabins} onChange={onChange}/>
+            <Tabs defaultActiveKey="1" >
+                <TabPane tab="Contact Number: 16630" key="1">
+                </TabPane>
+            </Tabs>
+            <Table columns={columns} dataSource={cabins} onChange={onChange} />
         </Layout>
 
     );

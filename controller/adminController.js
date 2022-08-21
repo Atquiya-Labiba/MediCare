@@ -15,7 +15,7 @@ exports.adddoctor = (req, res,next) => {
             return res.status(400).json({ error })
         }
         if (doctor) {
-            return res.status(201).json({ doctor })
+            return res.status(200).json({ doctor })
         }
     });
 };
@@ -31,23 +31,23 @@ exports.adddept = (req, res,next) => {
             return res.status(400).json({ error })
         }
         if (dept) {
-            return res.status(201).json({ dept })
+            return res.status(200).json({ dept })
         }
     });
 };
 
 
-exports.addcabin = (req, res,next) => {
-    const { type,price,status,phn_num } = req.body
+exports.addcabin = (req, res) => {
+    const { type,price,status } = req.body
     const cabin = new Cabin({
-        type, price,status,phn_num
+        type, price,status
     })
     cabin.save((error, cabin) => {
         if (error) {
             return res.status(400).json({ error })
         }
         if (cabin) {
-            return res.status(201).json({ cabin })
+            return res.status(200).json({ cabin })
         }
     });
 };

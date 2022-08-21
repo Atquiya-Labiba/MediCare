@@ -1,7 +1,7 @@
-import { Breadcrumb} from 'antd';
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Layout from '../components/AdminLayout';
+import image2 from "../background/image3.jpg"
 
 
 function AdminDashboard() {
@@ -11,8 +11,8 @@ function AdminDashboard() {
         navigate("/adminlogin")
     }
     return (
-        <Layout>
-            
+        <Layout>           
+            <img src={image2} style={{ height: '100%', width: '100%' }} />
         </Layout>
     )
 }
