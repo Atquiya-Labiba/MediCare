@@ -7,9 +7,6 @@ import { Table, Tabs } from "antd";
 const { TabPane } = Tabs
 
 function Cabin() {
-    const onChange = (filters) => {
-        console.log('params', filters);
-    };
     const [cabins, setCabin] = useState([]);
     const dispatch = useDispatch();
     const getCabin = async () => {
@@ -58,25 +55,20 @@ function Cabin() {
         {
             title: "Price",
             dataIndex: "price",
-            sorter: (a, b) => a.price.localeCompare(b.price),
-            render: (text, record) => (
-                <span>
-                    {record.price}
-                </span>
-            ),
+            sorter: (a, b) => parseInt(a.price) - parseInt(b.price),
         },
-        
+
     ];
 
     return (
         <Layout>
             <h1 className="page-header">Cabin </h1>
             <hr />
-            <Tabs defaultActiveKey="1" >
-                <TabPane tab="Contact Number: 16630" key="1">
+            <Tabs >
+                <TabPane tab="Contact Number: 16630" >
                 </TabPane>
             </Tabs>
-            <Table columns={columns} dataSource={cabins} onChange={onChange} />
+            <Table columns={columns} dataSource={cabins} />
         </Layout>
 
     );

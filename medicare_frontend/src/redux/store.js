@@ -8,13 +8,6 @@ const rootReducer = combineReducers({
   user : userSlice.reducer,
 });
 
-
-// const userInfoFromStorage = localStorage.getItem('user')
-//    ? JSON.parse(localStorage.getItem('user'))
-//    : null
-
-
-
 const store = configureStore({
   reducer: rootReducer,  
 });
