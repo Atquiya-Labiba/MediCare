@@ -46,7 +46,7 @@ exports.signup = async (req, res) => {
 };
 
 
-exports.login = (async (req, res, next) => {
+exports.login = (async (req, res) => {
   const { email, password } = req.body
   if (!email || !password) {
     return res.status(400).json({
@@ -217,7 +217,7 @@ exports.cabin = async (req, res) => {
 };
 
 
-exports.updateprofile = async (req, res, next) => {
+exports.updateprofile = async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
     if (user) {
@@ -298,35 +298,11 @@ exports.viewrecords = async (req, res) => {
     });
   }
 };
-exports.recordtype = async (req, res) => {
-  try {
-    const type = await User.findById(req.params.id);
-    res.status(200).send({
-      message: "Records type fetched successfully",
-      success: true,
-      data: type,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "Error to getrecord's type info",
-      success: false,
-      error,
-    });
-  }
-};
 
-exports.updaterecord = async (req, res, next) => {
+exports.updaterecord = async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
     if (user) {
-
-      // if (req.body.record_type) {
-      //   user.record_type = req.body.record_type
-      // }
-      // if (req.body.medical_record) {
-      //   user.medical_record = req.body.medical_record
-      // }
-
       const rec = {
         name: req.body.name,
         type: req.body.type,

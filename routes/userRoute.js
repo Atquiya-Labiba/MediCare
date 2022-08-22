@@ -45,8 +45,7 @@ router.delete('/deleteappointments/:id', deleteappointments)
 router.put('/updateprofile/:id', updateprofile)
 router.get('/viewrecords/:recId/:userId', viewrecords)
 router.post('/upload', upload.single('image'), (req, res) => {
-    res.send(`/${req.file.path}`)
-    
+    res.send(`/${req.file.path}`)    
 })
 router.post('/updaterecord/:id', updaterecord)
 
